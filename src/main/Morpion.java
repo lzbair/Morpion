@@ -14,12 +14,12 @@ public class Morpion {
 		
 	}
 
-	public Matcher<String> report() {
+	public String report() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Matcher<String> display() {
+	public String display() {
 		// TODO Auto-generated method stub
 		return null;
 	}
