@@ -26,9 +26,7 @@ public class Frame {
 		if (getClass() != obj.getClass())
 			return false;
 		Frame other = (Frame) obj;
-		if (x != other.x)
-			return false;
-		if (y != other.y)
+		if (token != other.token)
 			return false;
 		return true;
 	}

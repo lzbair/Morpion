@@ -2,13 +2,16 @@
 public class Player {
 	private final String name;
 	private final Token token;
-	public Player(String name, Token token) {
+	private  int rounds;
+	public Player(String name, Token token, int rounds) {
 		this.name = name;
 		this.token = token;
+		this.rounds = rounds;
 	}
 	
 	public void play(Grid g, Frame f){
 		g.fill(f,token);
+		rounds--;
 	}
 
 
@@ -27,6 +30,10 @@ public class Player {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public String status() {
+		return rounds + " games for " + name;
 	}
 	
 	
