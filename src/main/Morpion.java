@@ -11,9 +11,10 @@ public class Morpion {
 	private final Grid grid;
 
 	public Morpion(String grid, String player1, String player2) {
-		int size = Integer.parseInt(grid.split(":")[0]);
-		this.players.add(player(player1, (size / 2) + size % 2));
-		this.players.add(player(player2, (size / 2)));
+		int size = Integer.parseInt(grid.split("x")[0]);
+		int qSize = size * size;
+		this.players.add(player(player1, (qSize / 2) + qSize % 2));
+		this.players.add(player(player2, (qSize / 2)));
 		this.grid = new Grid(size);
 	}
 
@@ -28,18 +29,17 @@ public class Morpion {
 	}
 
 	public String display() {
-		// TODO Auto-generated method stub
-		return null;
+		return grid.display();
 	}
 
 	private Frame frame(String frameCode) {
-		int x = Integer.parseInt(frameCode.split("*")[0]);
-		int y = Integer.parseInt(frameCode.split("*")[1]);
+		int x = Integer.parseInt(frameCode.split("x")[0]);
+		int y = Integer.parseInt(frameCode.split("x")[1]);
 		return new Frame(x, y);
 	}
 
 	private Player getPlayer(String player) {
-		return this.players.get(players.indexOf(player(player, 0)));
+		return this.players.get(players.indexOf(new Player(player, null, 0)));
 	}
 
 	private Player player(String player, int rounds) {

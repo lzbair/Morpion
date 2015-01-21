@@ -35,7 +35,20 @@ public class Player {
 	public String status() {
 		return rounds + " games for " + name;
 	}
+
+
+	public boolean hasSameTokenAs(Token t) {
+		return t == token;
+	}
+
+	public boolean hasRounds() {
+		return rounds > 0;
+	}
 	
+	@Override
+	public String toString() {
+		return " " + name+ " ";
+	}
 	
 
 }

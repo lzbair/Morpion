@@ -8,34 +8,50 @@ public class Frame {
 		this.y = y;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + x;
-		result = prime * result + y;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Frame other = (Frame) obj;
-		if (token != other.token)
-			return false;
-		return true;
-	}
-
 	public void fill(Token t) {
-		if(token != null){
+		if (token != null) {
 			throw new BoxAlreadySelectedException();
 		}
 		token = t;
+	}
+
+	public boolean empty() {
+		return token == null;
+	}
+
+	public boolean hasSameTokenAs(Token t) {
+		return token == t;
+	}
+
+	public boolean willClose(Frame[][] frames) {
+		boolean row = true;
+		boolean col = true;
+		boolean dia = true;
+		for (int i = 0; i < frames.length; i++) {
+			if (frames[i][i] == null || !frames[i][i].hasSameTokenAs(token))
+				dia = false;
+			if ((frames[x][i] == null || !frames[x][i].hasSameTokenAs(token))) {
+				row = false;
+			}
+			if ((frames[i][y] == null || !frames[i][y].hasSameTokenAs(token))) {
+				col = false;
+			}
+		}
+
+		return row || col || dia;
+
+	}
+
+	@Override
+	public String toString() {
+		return token != null ? token.name() : " ";
+	}
+
+	public Frame fetchForSimilar(Frame[][] frames) {
+		if (frames[x][y] == null) {
+			frames[x][y] = new Frame(x, y);
+		}
+		return frames[x][y];
 	}
 
 }
